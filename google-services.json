@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1087202600496",
+    "firebase_url": "https://cannibalization-e72d5-default-rtdb.firebaseio.com",
+    "project_id": "cannibalization-e72d5",
+    "storage_bucket": "cannibalization-e72d5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1087202600496:android:3131120eca375ca491aff5",
+        "android_client_info": {
+          "package_name": "com.daniyalhas.aerotrace"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB0cxr3ThPo23w9eZuLygfbL-7OITXuSHA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

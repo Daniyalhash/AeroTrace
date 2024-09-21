@@ -1,37 +1,69 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
 import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
+import React, { useState, useEffect } from 'react';
+import { View, ActivityIndicator, StyleSheet } from 'react-native';
+import { auth, onAuthStateChanged } from './firebaseConfig'; // Adjust the path as necessary
 
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
-
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
+export default function Layout() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setIsAuthenticated(!!user);
+      setIsLoading(false);
+    });
 
-  if (!loaded) {
-    return null;
+    return () => unsubscribe();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <View style={styles.loadingContainer}>
+        <ActivityIndicator size="large" color="#0000ff" />
+      </View>
+    );
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-    </ThemeProvider>
+    <Stack>
+      {/* Root Screen - Typically a home or entry screen */}
+      <Stack.Screen name="index" options={{ headerShown: false }} />
+
+      {/* Authenticated Screens */}
+      {isAuthenticated ? (
+        <>
+          <Stack.Screen name="Home" options={{ headerShown: false }} />
+          <Stack.Screen name="Sidebar" options={{ headerShown: false }} />
+          <Stack.Screen name="BlockA" options={{ headerShown: false }} />
+          <Stack.Screen name="BlockB" options={{ headerShown: false }} />
+          <Stack.Screen name="BlockB2" options={{ headerShown: false }} />
+          <Stack.Screen name="BlockB3" options={{ headerShown: false }} />
+          <Stack.Screen name="BlockC" options={{ headerShown: false }} />
+          <Stack.Screen name="BlockCb" options={{ headerShown: false }} />
+          <Stack.Screen name="BlockCb2" options={{ headerShown: false }} />
+          <Stack.Screen name="BlockCb3" options={{ headerShown: false }} />
+          <Stack.Screen name="ReportGenerator" options={{ headerShown: false }} />
+          <Stack.Screen name="Traceability" options={{ headerShown: false }} />
+          <Stack.Screen name="CheckboxGroup" options={{ headerShown: false }} />
+          <Stack.Screen name="TraceabilityReport" options={{ headerShown: false }} />
+          <Stack.Screen name="Users" options={{ headerShown: false }} />
+          <Stack.Screen name="NotificationService" options={{ headerShown: false }} />
+          <Stack.Screen name="Notification" options={{ headerShown: false }} />
+        </>
+      ) : (
+        <>
+          <Stack.Screen name="Login" options={{ headerShown: false }} />
+          <Stack.Screen name="Signup" options={{ headerShown: false }} />
+        </>
+      )}
+    </Stack>
   );
 }
+
+const styles = StyleSheet.create({
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
