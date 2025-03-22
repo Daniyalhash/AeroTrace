@@ -1,5 +1,5 @@
 ## Welcome to AeroTrace App 👋
-AeroTrace is a comprehensive aviation maintenance tracking system designed to streamline documentation and management of critical aviation data. Built with Expo and powered by Firebase, AeroTrace offers real-time notifications, secure authentication, and efficient reporting for aircraft cannibalization and maintenance workflows.
+AeroTrace is a comprehensive aviation maintenance tracking system designed to streamline documentation and management of critical aviation data. Built with React Native and powered by Firebase, AeroTrace offers real-time notifications, secure authentication, and efficient reporting for aircraft cannibalization and maintenance workflows.
 
 ### Key Features
 - Push Notifications: Get real-time alerts when reports are created or updated, with seamless navigation to the relevant sections of the app.
