@@ -1,4 +1,4 @@
-
+![AeroTrace Thumbnail](kk.png)
 https://youtube.com/shorts/f4mc0rcOeIQ?si=uslC2O07eVZoNTjN
 
 ## Welcome to AeroTrace App 👋
